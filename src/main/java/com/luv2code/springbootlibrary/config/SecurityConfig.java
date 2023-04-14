@@ -20,10 +20,12 @@ public class SecurityConfig {
 
                 // Add CORS filters
                 .cors().and()
-                
+
                 // Protect endpoints at /api/<type>/secure
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/api/books/secure/**")
+                        .authenticated()
+                        .requestMatchers("/api/reviews/secure/**")
                         .authenticated()
                         .anyRequest().permitAll()
                 )
