@@ -27,6 +27,8 @@ public class SecurityConfig {
                         .authenticated()
                         .requestMatchers("/api/reviews/secure/**")
                         .authenticated()
+                        .requestMatchers("/api/messages/secure/**")
+                        .authenticated()
                         .anyRequest().permitAll()
                 )
                 .oauth2ResourceServer()
