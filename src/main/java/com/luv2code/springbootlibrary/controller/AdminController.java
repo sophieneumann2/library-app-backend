@@ -6,6 +6,8 @@ import com.luv2code.springbootlibrary.utils.ExtractJWT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Objects;
+
 @CrossOrigin("http://localhost:3000")
 @RestController
 @RequestMapping("/api/admin")
@@ -21,7 +23,7 @@ public class AdminController {
     @PostMapping("/secure/add/book")
     public void postBook(@RequestHeader(value = "Authorization") String token, @RequestBody AddBookRequest addBookRequest) throws Exception {
         String admin = ExtractJWT.payloadJWTExtraction(token, "\"userType\"");
-        if (admin == null || admin != "admin") {
+        if (admin == null || !Objects.equals(admin, "admin")) {
             throw new Exception("Administration page only.");
         }
         adminService.postBook(addBookRequest);
