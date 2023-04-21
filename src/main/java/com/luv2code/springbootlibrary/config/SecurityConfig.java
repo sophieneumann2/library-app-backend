@@ -29,6 +29,8 @@ public class SecurityConfig {
                         .authenticated()
                         .requestMatchers("/api/messages/secure/**")
                         .authenticated()
+                        .requestMatchers("/api/admin/secure/**")
+                        .authenticated()
                         .anyRequest().permitAll()
                 )
                 .oauth2ResourceServer()
